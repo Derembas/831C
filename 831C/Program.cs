@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace _831C
 {
@@ -10,19 +11,28 @@ namespace _831C
     {
         static void Main(string[] args)
         {
-            string[] Input = Console.ReadLine().Split(' ');
-            int k = Convert.ToByte(Input[0]); // Количество судей
-            int n = Convert.ToByte(Input[1]); // Количество оценок
-            string[] marks = Console.ReadLine().Split(' '); // Все проставленные оценки
+            // Рандомное заолнение оценок
+            //System.Random Rnd = new System.Random();
 
+            string[] Input = Console.ReadLine().Split(' ');
+            int k = Convert.ToInt32(Input[0]); // Количество судей
+            int n = Convert.ToInt32(Input[1]); // Количество оценок
+
+            string[] marks = Console.ReadLine().Split(' '); // Все проставленные оценки
             // Заполняем массив оценок
             int[] Marks = new int[k];
             for(int i=0; i < k; i++) { Marks[i] = Convert.ToInt32(marks[i]); }
+            //for (int i = 0; i < k; i++) { Marks[i] = Rnd.Next(-2000,20001); }
 
             // Заполняем массив баллов из памяти
             string[] remembered= Console.ReadLine().Split(' '); // Баллы в памяти
             int[] Remembered = new int[n];
             for (int i = 0; i < n; i++) { Remembered[i] = Convert.ToInt32(remembered[i]); }
+            //for (int i = 0; i < n; i++) { Remembered[i] = Rnd.Next(-4000000, 40000001); }
+
+            // Засекаем время
+            //Stopwatch Timer = new Stopwatch();
+            //Timer.Start();
 
             List<int> Answers =new List<int>();
             for (int i=0; i<k;i++)
@@ -41,8 +51,10 @@ namespace _831C
                 }
                 if (Next) { Answers.Add(CurAns); }
             }
+            //Timer.Stop();
+            //Console.WriteLine("Ответ {0}. Найден за {1} миллисекунд.", Answers.Distinct().Count(), Timer.ElapsedMilliseconds);
             Console.WriteLine(Answers.Distinct().Count());
-            Console.ReadLine();
+            //Console.ReadLine();
         }
 
         // Функция создания массива оценок
